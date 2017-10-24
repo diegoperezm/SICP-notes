@@ -1,0 +1,329 @@
+* The Substitution Model for Procedure Application
+  
+the interpreter evaluates the elements of the combination and applies the procedure 
+(which is the value of the operator of the combination)
+
+to the arguments 
+(which are the values of the operands of the combination). 
+
+To apply a compound procedure to arguments, 
+evaluate the body of the procedure with each formal parameter 
+replaced by the corresponding argument. 
+
+
+#+BEGIN_SRC scheme
+
+(f 5)
+
+#+END_SRC
+
+We begin by retrieving the body of f:
+
+#+BEGIN_SRC scheme
+
+(sum-of-squares (+ a 1) (* a 2))
+
+#+END_SRC
+
+
+Then we replace the formal parameter a by the argument 5:
+
+#+BEGIN_SRC scheme
+
+(sum-of-squares (+ 5 1) (* 5 2))
+
+#+END_SRC
+
+
+Thus the problem reduces to the evaluation of 
+a combination with two operands and an operator sum-of-squares. 
+
+Evaluating this combination involves three subproblems.
+
+We must evaluate the operator to get the procedure to be applied, 
+and we must evaluate the operands to get the arguments. 
+
+Now (+ 5 1) produces 6 
+and (* 5 2) produces 10,
+
+so we must apply the sum-of-squares procedure to 6 and 10. 
+
+These values are substituted for the formal parameters x and y in the body of sum-of-squares,
+reducing the expression to
+
+#+BEGIN_SRC scheme
+
+(+ (square 6) (square 10))
+
+#+END_SRC
+
+
+If we use the definition of square, this reduces to
+
+#+BEGIN_SRC scheme
+
+(+ (* 6 6) (* 10 10))
+
+#+END_SRC
+
+
+which reduces by multiplication to
+
+#+BEGIN_SRC scheme
+
+(+ 36 100)
+
+#+END_SRC
+
+
+and finally to
+
+#+BEGIN_SRC scheme
+
+136
+
+#+END_SRC
+
+
+** There are two points that should be stressed:
+
+ The purpose of the substitution is to help us think about procedure application, 
+*not to provide a description of how the interpreter really works.*
+
+In general, when modeling phenomena in science and engineering, we begin with simplified,
+incomplete models. 
+
+As we examine things in greater detail, these simple models become inadequate and must be 
+replaced by more refined models. The substitution model is no exception. 
+
+In particular, when we address in Chapter 3 the use of procedures with “mutable data,”
+we will see that the substitution model breaks down and must be replaced by a more 
+complicated model of procedure application.
+
+
+* Linear recursion and iteration  
+
+factorial function: 
+
+/
+n! = n * (n-1)*(n-2)***3*2*1
+
+how to compute factorials?
+observation:
+n! is equal to n time (n-1)! for any positive integer
+
+n! = n *[(n-1)*(n-2)***3*2*1] = n *(n-1)!
+
+thus: we can compute n! by computing (n-1)! and multiplying the result by n
+
+let 1! = 1 :
+
+#+BEGIN_SRC scheme 
+
+(define (factorial n)
+ (if (= n 1)
+      1
+      (* n (factorial (- n 1 )))))
+
+#+END_SRC
+
+#+BEGIN_SRC  scheme
+
+(factorial 6)
+(* 6 (factorial 5))
+(* 6 (* 5 (factorial 4)))
+(* 6 (* 5 (* 4 (factorial 3))))
+(* 6 (* 5 (* 4 (* 3 (factorial 2)))))
+(* 6 (* 5 (* 4 (* 3 (* 2 (factorial 1))))))
+(* 6 (* 5 (* 4 (* 3 (* 2 1)))))
+(* 6 (* 5 (* 4 (* 3 2))))
+(* 6 (* 5 (* 4 6)))
+(* 6 (* 5 24))
+(* 6 120)
+720 
+ 
+#+END_SRC
+
+Another form:  
+  
+we first multiply 1 by 2, then multiply the result by 4, then by 4, 
+and so on until we reach n.
+
+the counter and the product simoultaneously change from one step to the next according
+to the rule 
+
+#+BEGIN_EXAMPLE
+
+product <- counter  * product
+counter <- counter + 1
+
+#+END_EXAMPLE
+
+and if n! is the value of the product when the counter exceeds n
+
+#+BEGIN_SRC scheme
+
+(define (factorial n)
+ (fact-iter 1 1 n))
+
+(define (fact-iter product counter max-count)
+ (if (> counter max-count)
+      product
+      (fact-iter (* counter product)
+                 (+ counter 1)
+		 max-count)))
+
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+
+(factorial 6)
+(fact-iter 1 1 6)
+(fact-iter 1 2 6)
+(fact-iter 2 3 6)
+(fact-iter 6 4 6)
+(fact-iter 24 5 6)
+(fact-iter 120 6 6)
+(fact-iter 720 7 6)
+720
+
+#+END_EXAMPLE
+
+** Consider the first process. 
+
+The substitution model reveals a shape of expansion followed by contraction, 
+indicated by the arrow in Figure 1.3.
+
+The expansion occurs as the process builds up a chain of *deferred* operations 
+(in this case, a chain of multiplications). 
+
+The contraction occurs as the operations are *actually performed*.
+
+This type of process, characterized by a chain of deferred operations, 
+is called a recursive process. 
+
+Carrying out this process requires that the interpreter keep track of the operations 
+to be performed later on.
+
+In the computation of n ! , 
+the length of the chain of deferred multiplications,
+and hence the amount of information needed to keep track of it, 
+grows linearly with n (is proportional to n ), just like the number of steps. 
+Such a process is called a linear *recursive process*. 
+
+
+** The second process
+   
+Does not grow and shrink.
+
+At each step, all we need to keep track of, for any n , 
+are the current values of the variables product, counter, and max-count. 
+
+We call this an iterative process. 
+In general, 
+*an iterative process is one whose state can be summarized by a fixed number of*
+*state variables*,
+*together with a fixed rule that describes how the state variables should be updated* 
+*as the process moves from state to state* 
+*and an (optional) end test*
+*that specifies conditions under which the process should terminate*. 
+
+
+In computing n ! , the number of steps required grows linearly with n . 
+Such a process is called a *linear iterative process*
+
+
+* The  contrast between the two processes can be seen in another way.  
+
+In the iterative case: 
+ the program variables provide a complete description of the state of the process at any point.
+If we stopped the computation between steps, 
+all we would need to do to resume the computation is to 
+supply the interpreter with the values of the three program variables. 
+
+Not so with the recursive process. 
+In this case there is some additional “hidden” information,
+maintained by the interpreter and not contained in the program variables, 
+which indicates “where the process is” in negotiating the chain of deferred operations. 
+The longer the chain, the more information must be maintained.
+
+In contrasting iteration and recursion, we must be careful not to confuse 
+the notion of a *recursive process* 
+with the notion of a *recursive procedure*. 
+
+
+* When we describe a *procedure* as recursive,  
+
+we are referring to the syntactic fact that the procedure definition refers 
+(either directly or indirectly) to *the procedure itself*. 
+
+
+* When we describe a process as following a pattern that is, say, linearly recursive,
+
+we are speaking about *how the process evolves*, 
+not about the syntax of how a procedure is written. 
+
+It may seem disturbing that we refer to a recursive procedure such as fact-iter 
+as generating an iterative process. 
+
+However, the process really is iterative: 
+Its state is captured completely by its three state variables, 
+and an interpreter need keep track of only three variables in order to execute the process.
+
+
+* One reason that the distinction between process and procedure may be confusing is
+
+that most *implementations* of common languages (including Ada, Pascal, and C) 
+are designed in such a way that 
+
+*the interpretation of any recursive procedure*
+*consumes an amount of memory that grows with the number of procedure calls*, 
+even when the process described is, in principle, iterative. 
+
+As a consequence, 
+these languages *can describe iterative processes only* 
+*by resorting to special-purpose “looping constructs”* 
+such as do, repeat, until, for, and while. 
+
+The implementation of Scheme we shall consider in Chapter 5 does not share this defect. 
+
+*It will execute an iterative process in constant space,* 
+*even if the iterative process is described by a recursive procedure*.
+
+An implementation with this property is called *tail-recursive.*
+
+With a tail-recursive implementation, 
+iteration can be expressed using the ordinary procedure call mechanism, 
+so that special iteration constructs are useful only as syntactic sugar.
+
+Exercise 1.9: 
+Each of the following two procedures defines a method for adding two positive
+integers in terms of the procedures inc,
+which increments its argument by 1, and dec, which decrements its argument by 1. 
+
+
+#+BEGIN_SRC scheme
+
+(define (+ a b)
+ (if (= a 0)
+   b
+   (inc (+ (dec a) b))))
+
+(define (+ a b)
+ (if (= a 0)
+   b
+   (+ (dec a) (inc b))))
+
+#+END_SRC
+
+Using the substitution model, 
+illustrate the process generated by each procedure in evaluating (+ 4 5). 
+Are these processes iterative or recursive? 
+
+
+#+BEGIN_EXAMPLE
+(+ 4 5)
+
+
+
+#+END_EXAMPLE
