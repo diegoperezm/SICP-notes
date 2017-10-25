@@ -103,16 +103,24 @@ complicated model of procedure application.
 
 * Linear recursion and iteration  
 
-factorial function: 
+factorial function:
 
-/
-n! = n * (n-1)*(n-2)***3*2*1
+\begin{equation}
+ x=\sqrt{b}
+\end{equation}
+      
+
+\begin{equation}
+n ! = n ⋅ ( n − 1 ) ⋅ ( n − 2 ) ⋯ 3 ⋅ 2 ⋅ 1.
+\end{equation}
 
 how to compute factorials?
 observation:
 n! is equal to n time (n-1)! for any positive integer
 
-n! = n *[(n-1)*(n-2)***3*2*1] = n *(n-1)!
+\begin{equation}
+ n ! = n ⋅ [ ( n − 1 ) ⋅ ( n − 2 ) ⋯ 3 ⋅ 2 ⋅ 1 ] = n ⋅ ( n − 1 ) ! .
+\end{equation}
 
 thus: we can compute n! by computing (n-1)! and multiplying the result by n
 
