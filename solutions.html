@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-25 mié 11:10 -->
+<!-- 2017-10-28 sáb 15:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -232,12 +232,12 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3dd57e2">1. Exercise 1.9:</a></li>
+<li><a href="#org1c51531">1. Exercise 1.9:</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3dd57e2" class="outline-2">
-<h2 id="org3dd57e2"><span class="section-number-2">1</span> Exercise 1.9:</h2>
+<div id="outline-container-org1c51531" class="outline-2">
+<h2 id="org1c51531"><span class="section-number-2">1</span> Exercise 1.9:</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Each of the following two procedures defines a method for <b>adding</b> two positive
@@ -287,11 +287,32 @@ Are these processes iterative or recursive?
 <span style="color: #73d216;">;;; </span><span style="color: #73d216;">recursive </span>
 </pre>
 </div>
+
+<div class="org-src-container">
+<pre class="src src-scheme">(<span style="color: #b4fa70;">define</span> (<span style="color: #fce94f;">+</span> a b)
+ (<span style="color: #b4fa70;">if</span> (= a 0)
+   b
+   (+ (dec a) (inc b))))
+
+(+ 4 5)
+(+ (dec 4) (inc b))
+(+ 3 6)
+(+ (dec 3) (inc 6))
+(+ 2 7)
+(+ (dec 2) (inc 7))
+(+ 1 8)
+(+ (dec 1) (inc 8))
+(+ 0 9)
+9
+<span style="color: #73d216;">;; </span><span style="color: #73d216;">iterative</span>
+
+</pre>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2017-10-25 mié 11:10</p>
+<p class="date">Created: 2017-10-28 sáb 15:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

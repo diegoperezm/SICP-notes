@@ -106,11 +106,6 @@ complicated model of procedure application.
 factorial function:
 
 \begin{equation}
- x=\sqrt{b}
-\end{equation}
-      
-
-\begin{equation}
 n ! = n ⋅ ( n − 1 ) ⋅ ( n − 2 ) ⋯ 3 ⋅ 2 ⋅ 1.
 \end{equation}
 
@@ -200,7 +195,6 @@ and if n! is the value of the product when the counter exceeds n
 ** Consider the first process. 
 
 The substitution model reveals a shape of expansion followed by contraction, 
-indicated by the arrow in Figure 1.3.
 
 The expansion occurs as the process builds up a chain of *deferred* operations 
 (in this case, a chain of multiplications). 
@@ -208,23 +202,23 @@ The expansion occurs as the process builds up a chain of *deferred* operations
 The contraction occurs as the operations are *actually performed*.
 
 This type of process, characterized by a chain of deferred operations, 
-is called a recursive process. 
+is called a *recursive process.* 
 
 Carrying out this process requires that the interpreter keep track of the operations 
 to be performed later on.
 
-In the computation of n ! , 
+In the computation of n! , 
 the length of the chain of deferred multiplications,
 and hence the amount of information needed to keep track of it, 
-grows linearly with n (is proportional to n ), just like the number of steps. 
-Such a process is called a linear *recursive process*. 
+grows linearly with n ( is proportional to n ), just like the number of steps. 
+Such a process is called a *linear _recursive_ process*. 
 
 
 ** The second process
    
 Does not grow and shrink.
 
-At each step, all we need to keep track of, for any n , 
+At each step, all we need to keep track of, for any n, 
 are the current values of the variables product, counter, and max-count. 
 
 We call this an iterative process. 
@@ -237,8 +231,8 @@ In general,
 *that specifies conditions under which the process should terminate*. 
 
 
-In computing n ! , the number of steps required grows linearly with n . 
-Such a process is called a *linear iterative process*
+In computing n!, the number of steps required grows linearly with n. 
+Such a process is called a *linear _iterative_ process*
 
 
 * The  contrast between the two processes can be seen in another way.  
@@ -256,19 +250,19 @@ which indicates “where the process is” in negotiating the chain of deferred 
 The longer the chain, the more information must be maintained.
 
 In contrasting iteration and recursion, we must be careful not to confuse 
-the notion of a *recursive process* 
-with the notion of a *recursive procedure*. 
+the notion of a *recursive _process_ * 
+with the notion of a *recursive _procedure_ *. 
 
 
-* When we describe a *procedure* as recursive,  
+** When we describe a *procedure* as recursive,  
 
 we are referring to the syntactic fact that the procedure definition refers 
 (either directly or indirectly) to *the procedure itself*. 
 
 
-* When we describe a process as following a pattern that is, say, linearly recursive,
+** When we describe a *process* as following a pattern 
 
-we are speaking about *how the process evolves*, 
+that is, say, linearly recursive, we are speaking about *how the process evolves*, 
 not about the syntax of how a procedure is written. 
 
 It may seem disturbing that we refer to a recursive procedure such as fact-iter 
@@ -279,7 +273,7 @@ Its state is captured completely by its three state variables,
 and an interpreter need keep track of only three variables in order to execute the process.
 
 
-* One reason that the distinction between process and procedure may be confusing is
+** One reason that the distinction between process and procedure may be confusing is
 
 that most *implementations* of common languages (including Ada, Pascal, and C) 
 are designed in such a way that 
@@ -335,3 +329,4 @@ Are these processes iterative or recursive?
 
 
 #+END_EXAMPLE
+

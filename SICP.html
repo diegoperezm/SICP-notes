@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-10-25 mié 09:23 -->
+<!-- 2017-10-25 mié 11:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -254,26 +254,29 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0f4f822">1. The Substitution Model for Procedure Application</a>
+<li><a href="#orgeb6979c">1. The Substitution Model for Procedure Application</a>
 <ul>
-<li><a href="#orgbb62c78">1.1. There are two points that should be stressed:</a></li>
+<li><a href="#orgaaefbab">1.1. There are two points that should be stressed:</a></li>
 </ul>
 </li>
-<li><a href="#orgf82de24">2. Linear recursion and iteration</a>
+<li><a href="#orga64e4c9">2. Linear recursion and iteration</a>
 <ul>
-<li><a href="#org9bbedbb">2.1. Consider the first process.</a></li>
-<li><a href="#orgf6c7d75">2.2. The second process</a></li>
+<li><a href="#orgc440fe1">2.1. Consider the first process.</a></li>
+<li><a href="#orge798bac">2.2. The second process</a></li>
 </ul>
 </li>
-<li><a href="#orgb79569c">3. The  contrast between the two processes can be seen in another way.</a></li>
-<li><a href="#orgb147917">4. When we describe a <b>procedure</b> as recursive,</a></li>
-<li><a href="#orge685c48">5. When we describe a process as following a pattern that is, say, linearly recursive,</a></li>
-<li><a href="#orge24fb68">6. One reason that the distinction between process and procedure may be confusing is</a></li>
+<li><a href="#org981591c">3. The  contrast between the two processes can be seen in another way.</a>
+<ul>
+<li><a href="#orgf69b97b">3.1. When we describe a <b>procedure</b> as recursive,</a></li>
+<li><a href="#org50761b7">3.2. When we describe a <b>process</b> as following a pattern</a></li>
+<li><a href="#org347f8d3">3.3. One reason that the distinction between process and procedure may be confusing is</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0f4f822" class="outline-2">
-<h2 id="org0f4f822"><span class="section-number-2">1</span> The Substitution Model for Procedure Application</h2>
+<div id="outline-container-orgeb6979c" class="outline-2">
+<h2 id="orgeb6979c"><span class="section-number-2">1</span> The Substitution Model for Procedure Application</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 the interpreter evaluates the elements of the combination and applies the procedure 
@@ -389,8 +392,8 @@ and finally to
 </div>
 
 
-<div id="outline-container-orgbb62c78" class="outline-3">
-<h3 id="orgbb62c78"><span class="section-number-3">1.1</span> There are two points that should be stressed:</h3>
+<div id="outline-container-orgaaefbab" class="outline-3">
+<h3 id="orgaaefbab"><span class="section-number-3">1.1</span> There are two points that should be stressed:</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The purpose of the substitution is to help us think about procedure application, 
@@ -417,8 +420,8 @@ complicated model of procedure application.
 </div>
 
 
-<div id="outline-container-orgf82de24" class="outline-2">
-<h2 id="orgf82de24"><span class="section-number-2">2</span> Linear recursion and iteration</h2>
+<div id="outline-container-orga64e4c9" class="outline-2">
+<h2 id="orga64e4c9"><span class="section-number-2">2</span> Linear recursion and iteration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 factorial function:
@@ -531,12 +534,11 @@ and if n! is the value of the product when the counter exceeds n
 </pre>
 </div>
 
-<div id="outline-container-org9bbedbb" class="outline-3">
-<h3 id="org9bbedbb"><span class="section-number-3">2.1</span> Consider the first process.</h3>
+<div id="outline-container-orgc440fe1" class="outline-3">
+<h3 id="orgc440fe1"><span class="section-number-3">2.1</span> Consider the first process.</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The substitution model reveals a shape of expansion followed by contraction, 
-indicated by the arrow in Figure 1.3.
 </p>
 
 <p>
@@ -550,7 +552,7 @@ The contraction occurs as the operations are <b>actually performed</b>.
 
 <p>
 This type of process, characterized by a chain of deferred operations, 
-is called a recursive process. 
+is called a <b>recursive process.</b> 
 </p>
 
 <p>
@@ -559,25 +561,25 @@ to be performed later on.
 </p>
 
 <p>
-In the computation of n ! , 
+In the computation of n! , 
 the length of the chain of deferred multiplications,
 and hence the amount of information needed to keep track of it, 
-grows linearly with n (is proportional to n ), just like the number of steps. 
-Such a process is called a linear <b>recursive process</b>. 
+grows linearly with n ( is proportional to n ), just like the number of steps. 
+Such a process is called a <b>linear <span class="underline">recursive</span> process</b>. 
 </p>
 </div>
 </div>
 
 
-<div id="outline-container-orgf6c7d75" class="outline-3">
-<h3 id="orgf6c7d75"><span class="section-number-3">2.2</span> The second process</h3>
+<div id="outline-container-orge798bac" class="outline-3">
+<h3 id="orge798bac"><span class="section-number-3">2.2</span> The second process</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Does not grow and shrink.
 </p>
 
 <p>
-At each step, all we need to keep track of, for any n , 
+At each step, all we need to keep track of, for any n, 
 are the current values of the variables product, counter, and max-count. 
 </p>
 
@@ -594,16 +596,16 @@ In general,
 
 
 <p>
-In computing n ! , the number of steps required grows linearly with n . 
-Such a process is called a <b>linear iterative process</b>
+In computing n!, the number of steps required grows linearly with n. 
+Such a process is called a <b>linear <span class="underline">iterative</span> process</b>
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgb79569c" class="outline-2">
-<h2 id="orgb79569c"><span class="section-number-2">3</span> The  contrast between the two processes can be seen in another way.</h2>
+<div id="outline-container-org981591c" class="outline-2">
+<h2 id="org981591c"><span class="section-number-2">3</span> The  contrast between the two processes can be seen in another way.</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In the iterative case: 
@@ -623,16 +625,15 @@ The longer the chain, the more information must be maintained.
 
 <p>
 In contrasting iteration and recursion, we must be careful not to confuse 
-the notion of a <b>recursive process</b> 
-with the notion of a <b>recursive procedure</b>. 
+the notion of a *recursive <span class="underline">process</span> * 
+with the notion of a *recursive <span class="underline">procedure</span> *. 
 </p>
 </div>
-</div>
 
 
-<div id="outline-container-orgb147917" class="outline-2">
-<h2 id="orgb147917"><span class="section-number-2">4</span> When we describe a <b>procedure</b> as recursive,</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgf69b97b" class="outline-3">
+<h3 id="orgf69b97b"><span class="section-number-3">3.1</span> When we describe a <b>procedure</b> as recursive,</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 we are referring to the syntactic fact that the procedure definition refers 
 (either directly or indirectly) to <b>the procedure itself</b>. 
@@ -641,11 +642,11 @@ we are referring to the syntactic fact that the procedure definition refers
 </div>
 
 
-<div id="outline-container-orge685c48" class="outline-2">
-<h2 id="orge685c48"><span class="section-number-2">5</span> When we describe a process as following a pattern that is, say, linearly recursive,</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org50761b7" class="outline-3">
+<h3 id="org50761b7"><span class="section-number-3">3.2</span> When we describe a <b>process</b> as following a pattern</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
-we are speaking about <b>how the process evolves</b>, 
+that is, say, linearly recursive, we are speaking about <b>how the process evolves</b>, 
 not about the syntax of how a procedure is written. 
 </p>
 
@@ -663,9 +664,9 @@ and an interpreter need keep track of only three variables in order to execute t
 </div>
 
 
-<div id="outline-container-orge24fb68" class="outline-2">
-<h2 id="orge24fb68"><span class="section-number-2">6</span> One reason that the distinction between process and procedure may be confusing is</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org347f8d3" class="outline-3">
+<h3 id="org347f8d3"><span class="section-number-3">3.3</span> One reason that the distinction between process and procedure may be confusing is</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 that most <b>implementations</b> of common languages (including Ada, Pascal, and C) 
 are designed in such a way that 
@@ -741,8 +742,9 @@ Are these processes iterative or recursive?
 </div>
 </div>
 </div>
+</div>
 <div id="postamble" class="status">
-<p class="date">Created: 2017-10-25 mié 09:23</p>
+<p class="date">Created: 2017-10-25 mié 11:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
